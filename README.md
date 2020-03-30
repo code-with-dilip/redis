@@ -105,7 +105,42 @@ SREM	Removes the item from the set, if it exists
 ### HASH
 
 - Redis HASHes store a mapping of keys to values.
+- When using hash, we cannot set the key as a plain string.
 
 | Hash-Key  | Hash-Value |
 | ------------- | ------------- |
-| key(String, Integer)  | subkey-value|      
+| key(Not a plain String)  | subkey-value|      
+
+#### Example
+
+| Hash-Key  | Hash-Value |
+| ------------- | ------------- |
+| java:language  | java1 2000|      
+
+
+#### Commands
+
+```
+HSET	Stores the value at the key in the hash
+HGET	Fetches the value at the given hash key
+HGETALL	Fetches the entire hash
+HDEL	Removes a key from the hash, if it exists
+```
+
+#### Example
+
+```
+127.0.0.1:6379> hset java:language java2 2000 //sets a new hash
+(integer) 1
+127.0.0.1:6379> hset java:language java1 1999 //add a new value hash to the existing key
+(integer) 0
+127.0.0.1:6379> hget java:language java1 //gets a value for a given hashkey and subkey existing key
+"1999"
+127.0.0.1:6379> hgetall java:language //retrieves all the values for a given hashkey
+1) "java1"
+2) "1999"
+3) "java2"
+4) "2000"
+127.0.0.1:6379> hdel java:language java1 // deletes a hash value for the given hashkey and subkey
+(integer) 1
+```
