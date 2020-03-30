@@ -29,7 +29,7 @@ SET - Sets the value stored at the given key
 DEL - Deletes the value stored at the given key (works for all types)
 ```
 
-**Example**  
+  **Example**  
 
 ```
 ~/Dilip/study/codewithdilip/redis » redis-cli
@@ -43,3 +43,29 @@ OK
 ```
 
 ### LISTS
+
+- In the world of redis, we can have a list against a key.
+- You are allowed to have duplicate values for a given key
+- LISTs in **Redis** store an ordered sequence of strings
+
+```
+RPUSH	Pushes the value onto the right end of the list
+LRANGE	Fetches a range of values from the list
+LINDEX	Fetches an item at a given position in the list
+LPOP	Pops the value from the left end of the list and returns it
+```
+
+### SETS
+
+- Sets are very similar to LISTS.
+- Duplicates are not allowed
+- SETS in **Redis** store an unordered sequence of strings
+
+#### Commands:
+
+```
+SADD	Adds the item to the set
+SMEMBERS	Returns the entire set of items
+SISMEMBER	Checks if an item is in the set
+SREM	Removes the item from the set, if it exists
+```
