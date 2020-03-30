@@ -55,11 +55,28 @@ LINDEX	Fetches an item at a given position in the list
 LPOP	Pops the value from the left end of the list and returns it
 ```
 
+#### Example
+
+```
+127.0.0.1:6379> clear
+127.0.0.1:6379> lpush java java1 // adds an element to the left of the key
+(integer) 1
+127.0.0.1:6379> rpush java java2 // adds an element to the right of the key
+(integer) 2
+127.0.0.1:6379> lrange java 0 -1 // retrieves all the elements starting from 0 Index
+1) "java1"
+2) "java2"
+127.0.0.1:6379> lpop java  // returns and removes an element from the left side of the list
+"java1"
+127.0.0.1:6379> rpop java  // returns and removes an element from the right side of the list
+"java2"
+```
+
 ### SETS
 
 - Sets are very similar to LISTS.
 - Duplicates are not allowed
-- SETS in **Redis** store an unordered sequence of strings
+- **SETS** in Redis store an unordered sequence of strings
 
 #### Commands:
 
@@ -68,4 +85,19 @@ SADD	Adds the item to the set
 SMEMBERS	Returns the entire set of items
 SISMEMBER	Checks if an item is in the set
 SREM	Removes the item from the set, if it exists
+```
+
+#### Example
+
+```
+127.0.0.1:6379> sadd java java1 // adds a member to the set
+(integer) 1
+127.0.0.1:6379> sadd java java2 // adds a member to the set
+(integer) 1
+127.0.0.1:6379> smembers java // returns all the members in the set
+1) "java2"
+2) "java1"
+127.0.0.1:6379> sismember java java1 // returns 1 if the members exist in the set
+(integer) 1
+127.0.0.1:6379> sREM java java1 // removes a member from the set
 ```
