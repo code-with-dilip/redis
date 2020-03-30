@@ -101,3 +101,11 @@ SREM	Removes the item from the set, if it exists
 (integer) 1
 127.0.0.1:6379> sREM java java1 // removes a member from the set
 ```
+
+### HASH
+
+- Redis HASHes store a mapping of keys to values.
+
+| Hash-Key  | Hash-Value |
+| ------------- | ------------- |
+| key(String, Integer)  | subkey-value|      
