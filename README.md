@@ -12,7 +12,12 @@
 
 ## REDIS Data Structure
 
-- Redis allows us to store keys that map to any one of five different data structure types; STRINGs, LISTs, SETs, HASHes, and ZSETs.
+- Redis allows us to store keys that map to any one of five different data structure types;
+  - STRINGs,
+  - LISTs,
+  - SETs,
+  - HASHes, and
+  - ZSETs.
 
 ### String
 
