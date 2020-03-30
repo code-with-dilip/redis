@@ -115,7 +115,7 @@ SREM	Removes the item from the set, if it exists
 
 | Hash-Key  | Hash-Value |
 | ------------- | ------------- |
-| java:language  | java1 2000|      
+| java:language  | java1 1999 java2 2000|      
 
 
 #### Commands
@@ -143,4 +143,52 @@ HDEL	Removes a key from the hash, if it exists
 4) "2000"
 127.0.0.1:6379> hdel java:language java1 // deletes a hash value for the given hashkey and subkey
 (integer) 1
+```
+
+### ZSETS
+
+- These are ordered sets in Redis
+
+| Zset-Key  | Zset-Value |
+| ------------- | ------------- |
+|  key(can be a string) | Scores(Sorted) Members(Unique) |   
+
+
+```
+zadd grade4 99 dilip 98 scooby 100 aish
+```
+
+#### Commands
+
+```
+ZADD	Adds member with the given score to the ZSET
+ZRANGE	Fetches the items in the ZSET from their positions in sorted order
+ZRANGEBYSCORE	Fetches items in the ZSET based on a range of scores
+ZREM	Removes the item from the ZSET, if it exists
+```
+
+#### Examples
+
+```
+127.0.0.1:6379> zadd grade4 99 dilip 98 scooby 100 aish // adds three members to the zset
+(integer) 3
+127.0.0.1:6379> zrange grade4 0 -1 // retrieves the members for the zset key(just the members)
+1) "scooby"
+2) "dilip"
+3) "aish"
+127.0.0.1:6379> zrange grade4 0 -1 withscores  // retrieves the members for the zset key with scores
+1) "scooby"
+2) "98"
+3) "dilip"
+4) "99"
+5) "aish"
+6) "100"
+127.0.0.1:6379> zrem grade4 dilip // removes a member from the zset using the given member
+(integer) 1
+127.0.0.1:6379> ZRANGEBYSCORE grade4 98 99 // retreives the members(not the scores) for a given range of scores
+1) "scooby"
+127.0.0.1:6379> ZRANGEBYSCORE grade4 98 99 withscores // retreives the members with their corresponding scores for a given range of scores
+1) "scooby"
+2) "98"
+
 ```
